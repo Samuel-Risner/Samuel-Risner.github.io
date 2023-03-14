@@ -1,0 +1,19 @@
+/notes
+/node_modules
+
+# --- rendered templates ---
+/rendered_templates/**
+!/rendered_templates/**/
+!/rendered_templates/**/.gitkeep
+
+# --- js ---
+/js/**
+!/js/**/
+!/js/**/.gitkeep
+
+# --- css ---
+# /css/**
+# !/css/**/
+# !/css/**/input.css
+# !/css/**/.gitkeep
+/css/dist/output.css
