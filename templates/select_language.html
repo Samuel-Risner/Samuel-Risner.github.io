@@ -1,0 +1,10 @@
+<script type="text/javascript">
+    const lang = navigator.language;
+    const supportedLanguages = "{{ languages }}".split(",");
+    
+    if (supportedLanguages.includes(lang)) {
+        console.log("supported");
+    } else {
+        console.log("not supported");
+    }
+</script>

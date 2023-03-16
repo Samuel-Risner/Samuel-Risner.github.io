@@ -1,19 +1,16 @@
-/notes
 /node_modules
+
+# --- js for the server ---
+/dist/**
+!/dist/**/
+!/dist/**/.gitkeep
 
 # --- rendered templates ---
 /rendered_templates/**
 !/rendered_templates/**/
 !/rendered_templates/**/.gitkeep
 
-# --- js ---
-/js/**
-!/js/**/
-!/js/**/.gitkeep
-
-# --- css ---
-# /css/**
-# !/css/**/
-# !/css/**/input.css
-# !/css/**/.gitkeep
-/css/dist/output.css
+# --- static stuff ---
+/static/**
+!/static/**/
+!/static/**/.gitkeep
