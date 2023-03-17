@@ -12,7 +12,8 @@
     "build_ts_server": "tsc -p ./tsconfig.server.json",
     "build_ts_static": "tsc -p ./tsconfig.static.json",
     "build_tw": "tailwindcss -i ./css/input.css -o ./static/css/dist/output.css",
-    "render": "node ./dist/render_templates.js"
+    "render": "node ./dist/render_templates.js",
+    "move": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./move.ps1"
   },
   "repository": {
     "type": "git",
