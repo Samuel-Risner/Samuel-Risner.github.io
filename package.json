@@ -11,7 +11,8 @@
     "build_ts": "npm run build_ts_server && npm run build_ts_static",
     "build_ts_server": "tsc -p ./tsconfig.server.json",
     "build_ts_static": "tsc -p ./tsconfig.static.json",
-    "build_tw": "tailwindcss -i ./css/input.css -o ./static/css/dist/output.css"
+    "build_tw": "tailwindcss -i ./css/input.css -o ./static/css/dist/output.css",
+    "render": "node ./dist/render_templates.js"
   },
   "repository": {
     "type": "git",

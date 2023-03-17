@@ -3,20 +3,16 @@ import fs from "fs";
 import express, { Request, Response } from "express";
 import nunjucks from "nunjucks";
 
-const PORT = 5000;
-const TEMPLATES_FOLDER = "./templates";
-const HTML_FILES_TO_IGNORE = ["/base.html"]; // Add the full path to the file after `TEMPLATES_FOLDER`.
-const SELECT_LANGUAGE_PAGE = "/select_language.html"; // Same as ^.
-const LANGUAGE_ABBREVIATIONS = ["en", "de"];
+import { PORT, TEMPLATES_FOLDER, HTML_FILES_TO_IGNORE, SELECT_LANGUAGE_PAGE, LANGUAGE_ABBREVIATIONS, STATIC_FOLDER, STATIC_VIRTUAL_PATH } from "./settings.js";
 
 // create app
 const app = express();
 
 // setup nunjucks
-nunjucks.configure("templates/", {autoescape: true, express: app, noCache: true});
+nunjucks.configure(TEMPLATES_FOLDER, {autoescape: true, express: app, noCache: true});
 
 // static content
-app.use("static/", express.static("static/"));
+app.use(STATIC_VIRTUAL_PATH, express.static(STATIC_FOLDER));
 
 // load templates
 function loadFromDir(path: string, removeFromStart: number) {
@@ -36,7 +32,7 @@ function loadFromDir(path: string, removeFromStart: number) {
     
     // Calls this function recursively for each subdirectory.
     for (const subDir of subDirs) {
-        loadFromDir(`${path}/${subDir}`, removeFromStart);
+        loadFromDir(`${path}${subDir}/`, removeFromStart);
     }
 
     // Add the files to the app.
@@ -44,7 +40,7 @@ function loadFromDir(path: string, removeFromStart: number) {
         /** 
          * The path to the file within the templates folder. Example: "/path/to/the/file.html". Note that the template folder path is not included (`TEMPLATES_FOLDER`).
          */
-        const filePath: string = `${path.substring(removeFromStart)}/${file}`;
+        const filePath: string = `${path.substring(removeFromStart)}${file}`;
         
         // Files in the `TEMPLATES_FOLDER` that should not be available to the user.
         if (HTML_FILES_TO_IGNORE.includes(filePath)) {
@@ -64,7 +60,7 @@ function loadFromDir(path: string, removeFromStart: number) {
         // If the page is the language selection page `SELECT_LANGUAGE_PAGE` it is added as to the app with the url "/".
         if (filePath == SELECT_LANGUAGE_PAGE) {
             app.get("/", (req: Request, res: Response) => {
-                res.render(filePath.substring(1), {languages: LANGUAGE_ABBREVIATIONS}); // Remove "/" from the start.
+                res.render(filePath, {languages: LANGUAGE_ABBREVIATIONS}); // Remove "/" from the start.
             });
             continue;
         }
@@ -72,13 +68,13 @@ function loadFromDir(path: string, removeFromStart: number) {
         // Adds the page to the app for each abbreviation.
         for (const abbr of LANGUAGE_ABBREVIATIONS) {
             app.get(`/${abbr}${url}`, (req: Request, res: Response) => {
-                res.render(filePath.substring(1), { language: abbr, languages: LANGUAGE_ABBREVIATIONS}); // Remove "/" from the start.
+                res.render(filePath, { language: abbr, languages: LANGUAGE_ABBREVIATIONS}); // Remove "/" from the start.
             });
         }
     }
 }
 
-loadFromDir(TEMPLATES_FOLDER, TEMPLATES_FOLDER.length);
+loadFromDir(`${TEMPLATES_FOLDER}/`, `${TEMPLATES_FOLDER}/`.length);
 
 // start the server
 app.listen(PORT, () => console.log(`App available on http://localhost:${PORT}`));
