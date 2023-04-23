@@ -1,4 +1,5 @@
 /node_modules
+/notes
 
 # --- js for the server ---
 /dist/**

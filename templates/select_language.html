@@ -4,22 +4,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samuel Risner</title>
+    <link href="/static/css/dist/output.css" rel="stylesheet">
 </head>
 <body>
-    <div class="bg-red-400">
-        <div>
-            test
+    <div class="flex text-center w-screen h-screen">
+        <div class="flex flex-col m-auto border-4 border-neutral-300 p-4 rounded-xl">
+            <div class="flex flex-col">
+                <div class="p-2">
+                    Go to the english page:
+                </div>
+                <a href="/en/">
+                    <div class="w-20 rounded-lg border-[3px] border-neutral-300 overflow-hidden m-auto">
+                        <img src="/static/assets/flags/america.svg">
+                    </div>
+                </a>
+            </div>
+            <div class="flex flex-col">
+                <div class="p-2">
+                    Gehe zur deutschen Seite:
+                </div>
+                <a href="/de/">
+                    <div class="w-20 rounded-lg border-[3px] border-neutral-300 overflow-hidden m-auto">
+                        <img src="/static/assets/flags/germany.svg">
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
+    
 
-    <script type="text/javascript" defer>
+    <script type="text/javascript">
         const lang = navigator.language;
         const supportedLanguages = "{{ languages }}".split(",");
         
         if (supportedLanguages.includes(lang)) {
-            console.log("supported");
-        } else {
-            console.log("not supported");
+            // window.location.href = `/${lang}/`;
         }
     </script>
 </body>
