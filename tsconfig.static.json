@@ -1,7 +1,0 @@
-{
-    "extends": "./tsconfig.base",
-    "include": ["static_ts/**/*"],
-    "compilerOptions": {
-        "outDir": "./static/js"
-    }
-  }
