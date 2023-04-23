@@ -1,17 +1,17 @@
-/node_modules
-/notes
+node_modules/
+notes/
 
-# --- js for the server ---
+# Ignore all the files under "dist/", except for the ".gitkeep" file.
 /dist/**
 !/dist/**/
 !/dist/**/.gitkeep
 
-# --- rendered templates ---
+# Ignore all the files under "rendered_templates/", except for the ".gitkeep" file.
 /rendered_templates/**
 !/rendered_templates/**/
 !/rendered_templates/**/.gitkeep
 
-# --- static stuff ---
+# Ignore all the files under "static/", except for the ".gitkeep" file.
 /static/**
 !/static/**/
 !/static/**/.gitkeep
