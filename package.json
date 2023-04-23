@@ -11,8 +11,8 @@
     "build_ts": "npm run build_ts_server && npm run build_ts_static",
     "build_ts_server": "tsc -p ./tsconfig/server.json",
     "build_ts_static": "tsc -p ./tsconfig/static.json",
-    "build_tw": "tailwindcss -i ./css/input.css -o ./static/css/dist/output.css",
-    "watch_tw": "tailwindcss -i ./css/input.css -o ./static/css/dist/output.css --watch",
+    "build_tw": "tailwindcss -i ./tw/input.css -o ./static/css/dist/output.css",
+    "watch_tw": "tailwindcss -i ./tw/input.css -o ./static/css/dist/output.css --watch",
     "render": "node ./dist/render_templates.js",
     "move": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./move.ps1"
   },
