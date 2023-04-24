@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node ./dist/index.js",
-    "dev": "npm run build && npm run start",
+    "dev": "npm run build_ts_server && npm run start",
     "build": "npm run build_ts && npm run build_tw",
     "build_ts": "npm run build_ts_server && npm run build_ts_static",
     "build_ts_server": "tsc -p ./tsconfig/server.json",

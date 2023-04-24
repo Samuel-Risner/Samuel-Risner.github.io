@@ -1,0 +1,22 @@
+{
+    "en": {
+        "index": "#"
+    },
+    "de": {
+        "test2": {
+            "index": "gggggggggg",
+            "u": {
+                "index": "jjjj",
+                "v": {
+                    "index": "#"
+                },
+                "w": {
+                    "index": "ww",
+                    "x": {
+                        "index": "#"
+                    }
+                }
+            }
+        }
+    }
+}
