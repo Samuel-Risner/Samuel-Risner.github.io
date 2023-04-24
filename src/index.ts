@@ -35,7 +35,6 @@ function getTranslationForPath(path: string, languageAbbreviation: string): stri
 
     // If the language should not have any translations at all:
     if (dataForAbbreviation["index"] === "#") {
-        console.log("foo");
         return path;
     }
 
@@ -161,79 +160,7 @@ function loadPageFiles(path: string, removeFromStart: number) {
     }
 }
 
-// /**
-//  * 
-//  * @param path 
-//  * @param removeFromStart 
-//  */
-// function loadFromDir(path: string, removeFromStart: number) {
-//     /**
-//      * The files in the directory under `path`. Example: ["file1.html", "file2.html"].
-//      */
-//     const files: string[] = fs.readdirSync(path, {withFileTypes: true})
-//         .filter(item => !item.isDirectory())
-//         .map(item => item.name);
-    
-//     /**
-//      * The subdirectorys under `path`. Example: ["subdir1", "subdir2"].
-//      */
-//     const subDirs: string[] = fs.readdirSync(path, {withFileTypes: true})
-//         .filter(item => item.isDirectory())
-//         .map(item => item.name);
-    
-//     // Calls this function recursively for each subdirectory.
-//     for (const subDir of subDirs) {
-//         loadFromDir(`${path}${subDir}/`, removeFromStart);
-//     }
-
-//     // Add the files to the app.
-//     for (const file of files) {
-//         /** 
-//          * The path to the file within the templates folder. Example: "/path/to/the/file.html". Note that the template folder path is not included (`TEMPLATES_FOLDER`).
-//          */
-//         const filePath: string = `${path.substring(removeFromStart)}${file}`;
-        
-//         // Files in the `TEMPLATES_FOLDER` that should not be available to the user.
-//         if (HTML_FILES_TO_IGNORE.includes(filePath)) {
-//             continue;
-//         }
-
-//         /**
-//          * The url for accessing the file. Example for the file "/dir/file.html": "/dir/file".
-//          */
-//         let url = filePath.substring(0, filePath.length - 5); // Remove ".html" from the end.
-        
-//         // If the file is an "index.html" file, "index" is removed from the urls end. Example for the url "/dir/index": "/dir/".
-//         if (file == "index.html") {
-//             url = url.substring(0, url.length - 5);
-//         }
-
-//         // If the page is the language selection page `SELECT_LANGUAGE_PAGE` it is added as to the app with the url "/".
-//         if (filePath == SELECT_LANGUAGE_PAGE) {
-//             app.get("/", (req: Request, res: Response) => {
-//                 res.render(filePath, {languages: LANGUAGE_ABBREVIATIONS}); // Remove "/" from the start.
-//             });
-//             continue;
-//         }
-
-//         // Adds the page to the app for each abbreviation.
-//         for (const abbr of LANGUAGE_ABBREVIATIONS) {
-//             app.get(`/${abbr}${url}`, (req: Request, res: Response) => {
-//                 res.render(filePath, { language: abbr, languages: LANGUAGE_ABBREVIATIONS}); // Remove "/" from the start.
-//             });
-//         }
-//     }
-// }
-
 loadPageFiles(`${settings.templates.templatesFolder}${settings.templates.normalTemplatesFolder}/`, `${settings.templates.templatesFolder}${settings.templates.normalTemplatesFolder}/`.length);
 
-// // start the server
+// start the server
 app.listen(settings.server.port, () => console.log(`App available on http://localhost:${settings.server.port}`));
-
-// console.log(getLanguagePathForPath("/test", "en"));
-// console.log(getLanguagePathForPath("/test2", "de"));
-// // console.log(getLanguagePathForPath("/test2/u", "de"));
-// // console.log(getLanguagePathForPath("/test2/u/v", "de"));
-// // console.log(getLanguagePathForPath("/test2/u/w", "de"));
-// console.log(getLanguagePathForPath("/test2/u/w/x/y/z", "de"));
-// console.log(getLanguagePathForPath("/test3", "gg"));
